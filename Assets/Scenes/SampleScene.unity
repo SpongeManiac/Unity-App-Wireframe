@@ -1950,7 +1950,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 1130467089}
   pageTitle: Home
   pageName: HomePage
-  icon: {fileID: 21300000, guid: d48baf7e81f607446848f7d2f22cfa61, type: 3}
+  icon: {fileID: 21300000, guid: 649a3aa0cc6d57d40bf36493020c2ba6, type: 3}
   startView: {fileID: 0}
   currentView: {fileID: 0}
   viewContainer: {fileID: 413596151}
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   FlyoutIcon: {r: 1, g: 1, b: 1, a: 1}
   FlyoutFooterBackground: {r: 0, g: 0.44705886, b: 0.91372555, a: 1}
   PageBackground: {r: 0.18039216, g: 0.7803922, b: 1, a: 1}
-  PrimaryText: {r: 0, g: 0, b: 0, a: 1}
+  PrimaryText: {r: 1, g: 1, b: 1, a: 1}
   SecondaryText: {r: 1, g: 1, b: 1, a: 0}
   Title: {r: 1, g: 1, b: 1, a: 0}
   Header: {r: 1, g: 1, b: 1, a: 1}
@@ -3513,7 +3513,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 338959008}
   pageTitle: Settings
   pageName: SettingsPage
-  icon: {fileID: 21300000, guid: db9e0c3bfe276614faab5fed0f1c5110, type: 3}
+  icon: {fileID: 21300000, guid: fea1461238d4c5c40bd96b54188ee686, type: 3}
   startView: {fileID: 0}
   currentView: {fileID: 0}
   viewContainer: {fileID: 627582971}
