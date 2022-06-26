@@ -24,8 +24,11 @@ namespace App.Models.DataBase
             get
             {
                 var path = new Uri(Path.Combine(Application.persistentDataPath, dbName));
-                Debug.Log(path);
-                return path.AbsolutePath;
+                //Debug.Log(path);
+                //Debug.Log(path.AbsolutePath);
+                //Debug.Log(path.AbsoluteUri);
+                //Debug.Log(path.LocalPath);
+                return path.LocalPath;
             }
         }
 
