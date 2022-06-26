@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using App.Pages;
 
 public class HomePage : PageController
 {

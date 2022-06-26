@@ -1,67 +1,85 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using App.Themes;
+using App.Navigation;
 
-public class FlyoutController : MonoBehaviour
+namespace App.Flyout
 {
-    public Animator animator;
-    public GameObject itemList;
-    public Image touchBackground;
-    public PaletteController controller { get => AppController.instance.controller; }
-    public float alpha;
-    public bool visible = false;
-    public bool playing = false;
-
-    private void Awake()
+    /// <summary>Manages the flyout menu.</summary>
+    public class FlyoutController : StyleHandler
     {
-        animator.Play("FlyoutClose", -1, 1);
-        controller.ColorsChanged += ColorsChanged;
-        ColorsChanged(new ColorPaletteChangedEventArgs(controller.currentPalette));
-    }
+        /// <summary>The animator
+        /// component that animates the flyout menu.</summary>
+        public Animator animator;
+        /// <summary>The list of flyout page items.</summary>
+        public GameObject itemList;
+        /// <summary>The touch background
+        /// of they flyout menu.</summary>
+        public Image touchBackground;
+        /// <summary>The alpha
+        /// of the touch background.</summary>
+        public float alpha;
+        /// <summary>If the flyout is visible or not.</summary>
+        public bool visible = false;
+        /// <summary>If the animator component is playing.</summary>
+        public bool playing = false;
 
-    private void Update()
-    {
-        if (playing)
+        protected override void Awake()
         {
-            var current = touchBackground.color;
-            touchBackground.color = new Color(current.r, current.g, current.b, alpha);
+            animator.Play("FlyoutClose", -1, 1);
+            base.Awake();
         }
-    }
 
-    public void FlyoutTapped()
-    {
-        
-        var animInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float normT = animInfo.normalizedTime % 1f;
-        //check if animation is playing
-        float newNorm = playing ? 1f - normT : 0;
-        if (!visible)
+        private void Update()
         {
-            animator.Play("FlyoutOpen", -1, newNorm);
-            SelectCurrent();        }
-        else
-        {
-            animator.Play("FlyoutClose", -1, newNorm);
+            if (playing)
+            {
+                var current = touchBackground.color;
+                touchBackground.color = new Color(current.r, current.g, current.b, alpha);
+            }
         }
-        visible = !visible;
-    }
 
-    void SelectCurrent()
-    {
-        //select currently open page
-        var current = NavigationController.instance.currentPage;
-        List<FlyoutItemController> items = itemList.GetComponentsInChildren<FlyoutItemController>().ToList();
-        FlyoutItemController item = items.Find(i => i.pageName == current.pageName);
-        if (item != null)
+        /// <summary>Called when the flyout button is tapped.</summary>
+        public void FlyoutTapped()
         {
-            item.button.Select();
-        }
-    }
 
-    public void ColorsChanged(ColorPaletteChangedEventArgs args)
-    {
-        touchBackground.color = args.palette.FlyoutTouchBackground;
+            var animInfo = animator.GetCurrentAnimatorStateInfo(0);
+            float normT = animInfo.normalizedTime % 1f;
+            //check if animation is playing
+            float newNorm = playing ? 1f - normT : 0;
+            if (!visible)
+            {
+                animator.Play("FlyoutOpen", -1, newNorm);
+                SelectCurrent();
+            }
+            else
+            {
+                animator.Play("FlyoutClose", -1, newNorm);
+            }
+            visible = !visible;
+        }
+
+        /// <summary>Selects the currently open page.</summary>
+        void SelectCurrent()
+        {
+            //select currently open page
+            var current = NavigationController.instance.currentPage;
+            List<FlyoutItemController> items = itemList.GetComponentsInChildren<FlyoutItemController>().ToList();
+            FlyoutItemController item = items.Find(i => i.pageName == current.pageName);
+            if (item != null)
+            {
+                item.button.Select();
+            }
+        }
+
+        /// <summary>An event handler for when the colors change.</summary>
+        /// <param name="args">The <see cref="ColorPaletteChangedEventArgs" /> instance containing the color palette data.</param>
+        public override void ColorsChanged(ColorPaletteChangedEventArgs args)
+        {
+            touchBackground.color = args.palette.FlyoutTouchBackground;
+            base.ColorsChanged(args);
+        }
     }
 }

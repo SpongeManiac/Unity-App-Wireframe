@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using App;
+using App.Themes;
 
 public class FlyoutItemController : MonoBehaviour
 {

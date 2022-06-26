@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using App.Themes;
 
 [CustomEditor(typeof(ColorPalette))]
 public class ThemeEditor : Editor

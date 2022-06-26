@@ -1,14 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
-public class PageStyleHandler : StyleHandler
+namespace App.Themes
 {
-    public Image backgroundImage;
-
-    public override void ColorsChanged(ColorPaletteChangedEventArgs args)
+    /// <summary>A StyleHandler for app pages.</summary>
+    public class PageStyleHandler : StyleHandler
     {
-        backgroundImage.color = args.palette.PageBackground;
+        /// <summary>The background of the page.</summary>
+        public Image backgroundImage;
+
+        /// <summary>Event handler for when colors change.</summary>
+        /// <param name="args">The <see cref="ColorPaletteChangedEventArgs" /> instance containing the color palette data.</param>
+        public override void ColorsChanged(ColorPaletteChangedEventArgs args)
+        {
+            backgroundImage.color = args.palette.PageBackground;
+        }
     }
+
 }
